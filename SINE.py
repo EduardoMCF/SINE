@@ -7,7 +7,6 @@ from struct import pack
 from math import fmod
 from os import system
 
-###### Funtions
 def getNoteAndDuration(chord : str, defaultDuration : float):
     if ',' in chord:
         note,duration = chord.strip('()').split(',')
@@ -70,24 +69,18 @@ def plot(data : [float], nchannels : int = 1, samplingFreq : int = 44100):
     T = n/samplingFreq
     frq = np.arange(n)/T
     frq = frq[range(n//2)]
-    print(4)
     for idx in range(len(channels)):
-        print(6)
         FFT = (np.fft.fft(channels[idx])/n)[range(n//2)]
-        print(7)
         ax[1,idx].plot(frq,abs(FFT),color='C'+str(idx+2))
-        print(8)
         ax[1,idx].set_title('Spectrum (channel %i)' %(idx+1))
         ax[1,idx].set_xlabel('Freq (Hz)')
         ax[1,idx].set_ylabel('Magnitude')
-    print(5)
     plt.subplots_adjust(left=0.125, bottom=0.1, right=0.9, top=0.9, wspace=0.5, hspace=0.5)
     plt.show()
 
 def plotFromFile(path : str):
     wf = wave.open(path,'rb')
     data = np.frombuffer(wf.readframes(wf.getnframes()), np.int16)/32767
-    print(len(data),wf.getnchannels(),wf.getframerate())
     plot(data, wf.getnchannels(),wf.getframerate())
     wf.close()
 
@@ -131,7 +124,6 @@ def getParamsSong():
 def getParamsFile():
     return input('Path to a wav file: ')
 
-###### Constants
 pi = np.pi
 p = pyaudio.PyAudio()
 octaves = {
@@ -147,7 +139,6 @@ octaves = {
     '.': 0
 }
 
-###### User input
 choice1 = int(input('Select an option:\n1 - Generate sine wave\n2 - Generate song\n3 - Load wav file\n\nYour choice (1,2 or 3): '))
 if choice1 not in [1,2,3]: raise ValueError('Invalid choice: %i' %choice1)
 options = {1: getParamsSineWave, 2:getParamsSong, 3:getParamsFile}
@@ -181,11 +172,4 @@ while True:
             break
     system("cls||clear")
 
-p.terminate()
-
-
-
-
-
-
-
+p.terminate() 
