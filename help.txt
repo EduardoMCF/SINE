@@ -1,0 +1,14 @@
+To generate a song you have to create a txt file with notes separated by a white space and in the given notation:
+
+note 
+or 
+note,duration
+
+E.G:
+B6 
+or
+B6,0.7
+
+Other examples can be found within the songs folder in the furElise.txt and swanLake.txt files.
+
+More information about the note frequencies in: http://pages.mtu.edu/~suits/notefreqs.html
